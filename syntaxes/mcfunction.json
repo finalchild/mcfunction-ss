@@ -1,0 +1,103 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "mcfunction",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#keyword"
+        },
+        {
+            "include": "#string"
+        },
+        {
+            "include": "#numeric"
+        },
+        {
+            "include": "#pair"
+        }
+    ],
+    "repository": {
+        "comment": {
+            "patterns": [
+                {
+                    "name": "comment.mcfunction",
+                    "match": "#.*"
+                }
+            ]
+        },
+        "keyword": {
+            "patterns": [
+                {
+                    "name": "string.regexp.mcfunction",
+                    "match": "@[parse]"
+                },
+                {
+                    "match": "run\\s(advancement|clear|clone|data|datapack|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|help|kill|locate|me|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|seed|setblock|setworldspawn|spawnpoint|spreadplayers|stopsound|summon|tag|team|teleport|tell|tellraw|time|title|tp|trigger|w|weather|worldborder|xp)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "^(advancement|clear|clone|data|datapack|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|help|kill|locate|me|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|seed|setblock|setworldspawn|spawnpoint|spreadplayers|stopsound|summon|tag|team|teleport|tell|tellraw|time|title|tp|trigger|w|weather|worldborder|xp)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.mcfunction"
+                        }
+                    }
+                }
+            ]
+        },
+        "string": {
+            "name": "string.quoted.double.mcfunction",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.mcfunction",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "numeric": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.mcfunction",
+                    "match": "\\b(?:([0-9]+?\\.)?[0-9]+|[0-9]+\\.\\.[0-9]+?|\\.\\.[0-9]+?|[0-9]+\\.\\.)(?:b|d|f|l|s|B|D|F|L|S)?\\b"
+                }
+            ]
+        },
+        "pair": {
+            "patterns": [
+                {
+                    "match": "(?:\\[|,)([a-zA-Z_][a-zA-Z0-9_]+)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "(?:\\[|,)(([0-9]+?\\.)?[0-9]+(?:b|d|f|l|s|B|D|F|L|S)?)",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "(?:{|,)(\"[^\"]*\"|[a-zA-Z0-9_]+)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.mcfunction"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "scopeName": "source.mcfunction"
+}
