@@ -1,15 +1,22 @@
 {
     "name": "mcfunction-ss",
     "displayName": "mcfunction-ss",
-    "description": "",
+    "description": "Language support for mcfunction",
     "version": "0.0.1",
     "publisher": "intsuc",
     "engines": {
         "vscode": "^1.18.0"
     },
+    "license": "MIT",
     "categories": [
         "Languages"
     ],
+    "icon": "images/icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/intsuc/mcfunction-ss"
+    },
+    "keywords": ["mcfunction"],
     "activationEvents": [
         "onLanguage:mcfunction"
     ],
