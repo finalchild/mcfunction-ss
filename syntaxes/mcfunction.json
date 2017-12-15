@@ -23,7 +23,7 @@
             "patterns": [
                 {
                     "name": "comment.mcfunction",
-                    "match": "#.*"
+                    "match": "^#.*"
                 }
             ]
         },
@@ -46,6 +46,14 @@
                     "captures": {
                         "1": {
                             "name": "keyword.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "[a-zA-Z0-9\\-_]:([a-z0-9_]+)",
+                    "captures": {
+                        "1": {
+                            "name": "support.class.mcfunction"
                         }
                     }
                 }

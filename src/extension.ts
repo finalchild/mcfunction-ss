@@ -1,12 +1,14 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as parser from './parser';
-import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands } from 'vscode';
+import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands, DiagnosticCollection } from 'vscode';
 import { configure } from 'vscode/lib/testrunner';
+
+let diagnosticCollection: DiagnosticCollection;
 
 export function activate(context: ExtensionContext) {
 
-    var completion = languages.registerCompletionItemProvider('mcfunction', {
+    languages.registerCompletionItemProvider('mcfunction', {
         provideCompletionItems(document, position, token) {
             var text = document.getText(new Range(position.line, 0, position.line, position.character))
 
@@ -37,7 +39,7 @@ export function activate(context: ExtensionContext) {
         }
     }, ...[' ', '[', '{', ',']);
 
-    var signature = languages.registerSignatureHelpProvider('mcfunction', {
+    languages.registerSignatureHelpProvider('mcfunction', {
         provideSignatureHelp(document, position, token) {
             var text = document.getText(new Range(position.line, 0, position.line, position.character));
 
@@ -54,6 +56,7 @@ export function activate(context: ExtensionContext) {
             }
         }
     }, ...[' ']);
+
 }
 
 export function deactivate() {
