@@ -15022,7 +15022,6 @@ function peg$parse(input, options) {
 
     function getFunctions(path) {
       var functions = []
-      try {
       if (path != undefined) {
 
       glob.sync(`${path}/**/functions/**/*.mcfunction`).forEach(file => {
@@ -15031,11 +15030,12 @@ function peg$parse(input, options) {
         var relativeActiveFilePath = activeFilePath.slice(path.length + 1);
 
         var accessModifiers = ""
-        var firstLine = ""
+        var firstLine = fs.readFileSync(file).toString().split('\n')[0]
+        /*
         fs.readFile(file, function (err, data) {
           if (err) throw err
           firstLine = data.toString().split('\n')[0]
-        })
+        })*/
         if (firstLine.match(/#(public|internal|private)/)) {
           accessModifiers = firstLine.match(/#(public|internal|private)/)[1]
         } else {
@@ -15069,7 +15069,6 @@ function peg$parse(input, options) {
         functions.push(`#${match[1]}:${match[2]}`)
       })
       }
-      } catch (e) {console.log(e);functions.push(e)}
 
       return functions
     }
