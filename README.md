@@ -6,19 +6,19 @@ Language support for mcfunction (17w50a)
 
 - IntelliSense
 
-  [intellisense](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/intellisense.png)
+  ![intellisense](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/intellisense.png)
 
 - Syntax Highlighting
 
-  [syntax_highlighting](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/syntax_highlight.png)
+  ![syntax_highlighting](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/syntax_highlight.png)
 
 - Smart Usage
 
-  [smart_usage](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/smart_usage.png)
+  ![smart_usage](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/smart_usage.png)
 
 - Access modifiers
 
-  [access_modifiers](https://github.com/intsuc/mcfunction-ss/blob/master/images/access_modifiers.png)
+  ![access_modifiers](https://github.com/intsuc/mcfunction-ss/blob/master/images/access_modifiers.png)
 
 ----------
 
