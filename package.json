@@ -2,7 +2,7 @@
     "name": "mcfunction-ss",
     "displayName": "mcfunction-ss",
     "description": "Language support for mcfunction",
-    "version": "0.2.2",
+    "version": "0.2.4",
     "publisher": "intsuc",
     "engines": {
         "vscode": "^1.18.0"

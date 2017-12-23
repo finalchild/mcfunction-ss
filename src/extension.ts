@@ -3,16 +3,20 @@ import * as vscode from 'vscode';
 import * as parser from './parser';
 import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands, DiagnosticCollection, workspace, Uri, window } from 'vscode';
 import { configure } from 'vscode/lib/testrunner';
+import * as fs from 'fs'
 
 export let workspacePath: string;
 export let activeFilePath: string;
 
 export function activate(context: ExtensionContext) {
 
-    languages.registerCompletionItemProvider('mcfunction', {
+    let completion = languages.registerCompletionItemProvider('mcfunction', {
         provideCompletionItems(document, position, token) {
-            workspacePath = workspace.workspaceFolders[0].uri.fsPath.replace(/\\/g, '/');
-            activeFilePath = window.activeTextEditor.document.uri.fsPath.replace(/\\/g, '/');
+
+            if (workspace.workspaceFolders != undefined) {
+                workspacePath = workspace.workspaceFolders[0].uri.fsPath.replace(/\\/g, '/');
+                activeFilePath = window.activeTextEditor.document.uri.fsPath.replace(/\\/g, '/');
+            }
 
             var text = document.getText(new Range(position.line, 0, position.line, position.character))
 
@@ -53,7 +57,7 @@ export function activate(context: ExtensionContext) {
         }
     }, ...[' ', '[', '{', ',']);
 
-    languages.registerSignatureHelpProvider('mcfunction', {
+    let signature = languages.registerSignatureHelpProvider('mcfunction', {
         provideSignatureHelp(document, position, token) {
             var text = document.getText(new Range(position.line, 0, position.line, position.character));
 
@@ -71,6 +75,8 @@ export function activate(context: ExtensionContext) {
         }
     }, ...[' ']);
 
+    context.subscriptions.push(completion);
+    context.subscriptions.push(signature);
 }
 
 export function deactivate() {
