@@ -18,7 +18,7 @@ Language support for mcfunction (17w50a)
 
 - Access modifiers
 
-  ![access_modifiers](https://github.com/intsuc/mcfunction-ss/blob/master/images/access_modifiers.png)
+  ![access_modifiers](https://raw.githubusercontent.com/intsuc/mcfunction-ss/master/images/access_modifiers.png)
 
 ----------
 
