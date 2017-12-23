@@ -70,6 +70,14 @@
                     }
                 },
                 {
+                    "match": "(?:|\\s)(true|false)",
+                    "captures": {
+                        "1": {
+                            "name": "support.class.mcfunction"
+                        }
+                    }
+                },
+                {
                     "match": "(?:{|,)\\s*(\\\\*\"(?:Command|value)\\\\*\"|(?:Command|value))\\s*:\\s*(.*)",
                     "captures": {
                         "1": {
