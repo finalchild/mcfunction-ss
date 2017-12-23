@@ -22,6 +22,10 @@
         "comment": {
             "patterns": [
                 {
+                    "name": "keyword.mcfunction",
+                    "match": "^#(?:public|internal|private)"
+                },
+                {
                     "name": "comment.mcfunction",
                     "match": "^#.*"
                 }
@@ -30,7 +34,7 @@
         "keyword": {
             "patterns": [
                 {
-                    "name": "string.regexp.mcfunction",
+                    "name": "support.function.mcfunction",
                     "match": "@[parse]"
                 },
                 {
@@ -50,10 +54,56 @@
                     }
                 },
                 {
-                    "match": "[a-zA-Z0-9\\-_]:([a-z0-9_]+)",
+                    "match": "(?<!#)minecraft:([a-z0-9_]+)",
                     "captures": {
                         "1": {
                             "name": "support.class.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "(#)[a-zA-Z0-9_\\-]+:",
+                    "captures": {
+                        "1": {
+                            "name": "support.function.mcfunction"
+                        }
+                    }
+                },
+                {
+                    "match": "(?:{|,)\\s*(\\\\*\"(?:Command|value)\\\\*\"|(?:Command|value))\\s*:\\s*(.*)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.mcfunction"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "begin": "\"",
+                                    "end": "\"",
+                                    "patterns": [
+                                        {
+                                            "match": "(advancement|clear|clone|data|datapack|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|help|kill|locate|me|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|seed|setblock|setworldspawn|spawnpoint|spreadplayers|stopsound|summon|tag|team|teleport|tell|tellraw|time|title|tp|trigger|w|weather|worldborder|xp)\\b",
+                                            "captures": {
+                                                "1": {
+                                                    "name": "keyword.mcfunction"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "include": "#keyword"
+                                        },
+                                        {
+                                            "include": "#string"
+                                        },
+                                        {
+                                            "include": "#numeric"
+                                        },
+                                        {
+                                            "include": "#pair"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     }
                 }
@@ -97,7 +147,7 @@
                     }
                 },
                 {
-                    "match": "(?:{|,)(\"[^\"]*\"|[a-zA-Z0-9_]+)",
+                    "match": "(?:{|,)\\s*(\"[^\"]*\"|[a-zA-Z0-9_]+)",
                     "captures": {
                         "1": {
                             "name": "variable.mcfunction"

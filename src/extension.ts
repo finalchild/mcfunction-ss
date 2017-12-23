@@ -1,18 +1,22 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as parser from './parser';
-import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands, DiagnosticCollection } from 'vscode';
+import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands, DiagnosticCollection, workspace, Uri, window } from 'vscode';
 import { configure } from 'vscode/lib/testrunner';
 
-let diagnosticCollection: DiagnosticCollection;
+export let workspacePath: string;
+export let activeFilePath: string;
 
 export function activate(context: ExtensionContext) {
 
     languages.registerCompletionItemProvider('mcfunction', {
         provideCompletionItems(document, position, token) {
+            workspacePath = workspace.workspaceFolders[0].uri.fsPath.replace(/\\/g, '/');
+            activeFilePath = window.activeTextEditor.document.uri.fsPath.replace(/\\/g, '/');
+
             var text = document.getText(new Range(position.line, 0, position.line, position.character))
 
-            var results = parser.parse(text);
+            var results = parser.parse(text, {});
             var args: string[] = results.args;
             var type: string = results.type;
 
@@ -27,6 +31,16 @@ export function activate(context: ExtensionContext) {
                         break;
                     case "literal":
                         item.kind = CompletionItemKind.Property;
+                        break;
+                    case "function":
+                        item.kind = CompletionItemKind.File;
+                        if (!arg.startsWith('#')) {
+                            item.label = arg.split(' ')[1];
+                            item.detail = arg.split(' ')[0];
+                        }
+                        break;
+                    case "advancement":
+                        item.kind = CompletionItemKind.File;
                         break;
                     default:
                         item.kind = CompletionItemKind.Enum;
@@ -43,7 +57,7 @@ export function activate(context: ExtensionContext) {
         provideSignatureHelp(document, position, token) {
             var text = document.getText(new Range(position.line, 0, position.line, position.character));
 
-            var results = parser.parse(text);
+            var results = parser.parse(text, {});
             var usage = results.usage;
 
             if (usage != null) {
