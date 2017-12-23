@@ -15022,6 +15022,7 @@ function peg$parse(input, options) {
 
     function getFunctions(path) {
       var functions = []
+      if (path != undefined) {
 
       glob.sync(`${path}/**/functions/**/*.mcfunction`).forEach(file => {
         var relativePath = file.slice(path.length + 1);
@@ -15066,6 +15067,7 @@ function peg$parse(input, options) {
         var match = file.slice(path.length + 1).match(/[^\/]+\/data\/([^\/]+)\/tags\/functions\/(.+)\.json/)
         functions.push(`#${match[1]}:${match[2]}`)
       })
+      }
 
       return functions
     }
@@ -15073,10 +15075,12 @@ function peg$parse(input, options) {
     function getAdvancements(path) {
       var advancements = []
 
+      if (path != undefined) {
       glob.sync(`${path}/**/advancements/**/*.json`).forEach(file => {
         var match = file.slice(path.length + 1).match(/[^\/]+\/data\/([^\/]+)\/advancements\/(.+)\.json/)
         advancements.push(`${match[1]}:${match[2]}`)
       })
+      }
 
       return advancements
     }
@@ -15084,10 +15088,12 @@ function peg$parse(input, options) {
     function getItems(path) {
       var items = []
 
+      if (path != undefined) {
       glob.sync(`${path}/**/tags/items/**/*.json`).forEach(file => {
         var match = file.slice(path.length + 1).match(/[^\/]+\/data\/([^\/]+)\/tags\/items\/(.+)\.json/)
         items.push(`#${match[1]}:${match[2]}`)
       })
+      }
 
       return items
     }
@@ -15095,10 +15101,12 @@ function peg$parse(input, options) {
     function getBlocks(path) {
       var blocks = []
 
+      if (path != undefined) {
       glob.sync(`${path}/**/tags/blocks/**/*.json`).forEach(file => {
         var match = file.slice(path.length + 1).match(/[^\/]+\/data\/([^\/]+)\/tags\/blocks\/(.+)\.json/)
         blocks.push(`#${match[1]}:${match[2]}`)
       })
+      }
 
       return blocks
     }

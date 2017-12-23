@@ -13,7 +13,7 @@ export function activate(context: ExtensionContext) {
     let completion = languages.registerCompletionItemProvider('mcfunction', {
         provideCompletionItems(document, position, token) {
 
-            if (workspace.workspaceFolders != undefined) {
+            if (workspace.workspaceFolders != undefined && window.activeTextEditor != undefined) {
                 workspacePath = workspace.workspaceFolders[0].uri.fsPath.replace(/\\/g, '/');
                 activeFilePath = window.activeTextEditor.document.uri.fsPath.replace(/\\/g, '/');
             }
