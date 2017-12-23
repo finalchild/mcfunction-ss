@@ -3,7 +3,6 @@ import * as vscode from 'vscode';
 import * as parser from './parser';
 import { languages, ExtensionContext, Range, SignatureInformation, CompletionItem, CompletionItemKind, commands, DiagnosticCollection, workspace, Uri, window } from 'vscode';
 import { configure } from 'vscode/lib/testrunner';
-import * as fs from 'fs'
 
 export let workspacePath: string;
 export let activeFilePath: string;

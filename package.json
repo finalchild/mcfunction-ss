@@ -2,7 +2,7 @@
     "name": "mcfunction-ss",
     "displayName": "mcfunction-ss",
     "description": "Language support for mcfunction",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "publisher": "intsuc",
     "engines": {
         "vscode": "^1.18.0"
@@ -54,9 +54,11 @@
     "devDependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.51",
-        "glob": "^7.1.2",
         "ts-pegjs": "^0.1.13",
         "typescript": "^2.6.1",
         "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "glob": "^7.1.2"
     }
 }

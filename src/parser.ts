@@ -15022,6 +15022,7 @@ function peg$parse(input, options) {
 
     function getFunctions(path) {
       var functions = []
+      try {
       if (path != undefined) {
 
       glob.sync(`${path}/**/functions/**/*.mcfunction`).forEach(file => {
@@ -15068,6 +15069,7 @@ function peg$parse(input, options) {
         functions.push(`#${match[1]}:${match[2]}`)
       })
       }
+      } catch (e) {console.log(e);functions.push(e)}
 
       return functions
     }
