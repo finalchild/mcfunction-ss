@@ -24,7 +24,7 @@ Language support for mcfunction (17w50a)
 
 ## Access modifiers
 
-You can declare accessibility levels for functions to add the access modifier on the first line in a function.
+You can declare accessibility levels for functions by adding the access modifier on the first line in a function.
 
 | Modifier    | Meaning                                    |
 | :---------- | :----------------------------------------- |
